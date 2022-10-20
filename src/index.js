@@ -53,14 +53,17 @@ const io = new IntersectionObserver(callback, options);
 
 async function onSearch(event) {
     event.preventDefault();
-    searchQuery = event.currentTarget.searchQuery.value.trim();
+
+    const {
+    elements: { searchQuery },
+    } = event.currentTarget;
+    const query = searchQuery.value.trim().toLowerCase();
     
-    
-    if (searchQuery === '') {
+    if (query === '') {
         emptySearch();
         return;
     }
-    apiService.searchQuery = searchQuery;
+    apiService.searchQuery = query;
     clearPage();
 
     try {

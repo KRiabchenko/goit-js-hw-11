@@ -8,13 +8,13 @@ export class ApiService{
     #page = 1;
     #searchQuery = '';
     #perPage = 40;
-  #totalHits = 0;
-  #params = {
+    #totalHits = 0;
+    #params = {
     params: {
       key: '30594322-2efeba6f22ad964c69d1079cd',
       image_type: 'photo',
-    orientation: 'horizontal',
-    safesearch: 'true',
+      orientation: 'horizontal',
+      safesearch: 'true',
     }, 
   }
 
