@@ -35,7 +35,8 @@ const callback = async function (entries, observer) {
 
                 if (apiService.isShowLoadMore) {
                   const target = document.querySelector('.gallery__link:last-child')
-                  io.observe(target);
+                    io.observe(target);
+                    simplelightbox.refresh();
                 }
               
             } catch (error) {
@@ -43,8 +44,7 @@ const callback = async function (entries, observer) {
                 imagesNotFound();
                 clearPage();
             }
-        }
-        
+        }   
     });
 }
 
@@ -81,10 +81,10 @@ async function onSearch(event) {
         if (apiService.isShowLoadMore) {
             // refs.loadMore.classList.remove('is-hidden')
             const target = document.querySelector('.gallery__link:last-child');
-            console.log(target);
             io.observe(target);
+            simplelightbox.refresh();
         }
-        simplelightbox.refresh();
+        
     } catch (error) {
         console.log(error);
         imagesNotFound();
@@ -104,9 +104,8 @@ async function onLoadMore() {
         const { hits } = await apiService.getImages();
         const markup = createMarkup(hits);
         refs.gallery.insertAdjacentHTML('beforeend', markup);
-        simplelightbox.refresh();
         scrollPage();
-    
+        simplelightbox.refresh(apiService.incrementPage());
     }
     catch (error) {
         console.log(error);
